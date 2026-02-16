@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Identity Verification System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="step-0" class="screen active">
+        <div class="intro-box">
+            <h1>SYSTEM ACCESS</h1>
+            <p>사용자 접근이 감지되었습니다.</p>
+            <p>보안을 위해 인간 정체성 검증 프로세스로 리다이렉트합니다.</p>
+            <div class="loading-bar">
+                <div class="progress"></div>
+            </div>
+            <p class="status-text">Redirecting...</p>
+        </div>
+    </div>
+
+    <div id="step-1" class="screen hidden">
+        <div class="verification-box">
+            <div class="header">
+                <h2>Select all images with <br><strong>CATS</strong></h2>
+                <p>Click verify once there are none left.</p>
+            </div>
+            
+            <div class="image-grid">
+                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=CAT+1" alt="img">
+                </div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=DOG+1" alt="img">
+                </div>
+                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=CAT+2" alt="img">
+                </div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=CAR" alt="img">
+                </div>
+                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=CAT+3" alt="img">
+                </div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=TREE" alt="img">
+                </div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=SKY" alt="img">
+                </div>
+                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=CAT+4" alt="img">
+                </div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=FOO" alt="img">
+                </div>
+            </div>
+
+            <div class="footer">
+                <button class="verify-btn" onclick="checkStep1()">VERIFY</button>
+            </div>
+            <p id="result-message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <div id="step-3" class="screen hidden">
+        <div class="verification-box">
+            <div class="header">
+                <h2>Select all <br><strong>HUMAN FEATURES</strong></h2>
+                <p>Verify your biological composition.</p>
+            </div>
+            
+            <div class="image-grid">
+                <div class="grid-item" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=EYE" alt="Human Eye">
+                </div>
+                <div class="grid-item" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=LEAF" alt="Nature">
+                </div>
+                <div class="grid-item" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=MOUTH" alt="Human Mouth">
+                </div>
+                <div class="grid-item" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=GEAR" alt="Machine">
+                </div>
+                <div class="grid-item" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=NOSE" alt="Human Nose">
+                </div>
+                <div class="grid-item" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=WIRE" alt="Technology">
+                </div>
+                <div class="grid-item" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=HAND" alt="Human Hand">
+                </div>
+                <div class="grid-item" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=STONE" alt="Object">
+                </div>
+                <div class="grid-item" onclick="toggleSelect(this)">
+                    <img src="https://placehold.co/100x100/png?text=SKIN" alt="Human Skin">
+                </div>
+            </div>
+
+            <div class="footer">
+                <button class="verify-btn" onclick="checkStep3()">VERIFY</button>
+            </div>
+            <p id="result-message-3" style="font-size: 13px; margin-top: 10px; text-align: center; color: #d93025;"></p>
+        </div>
+    </div>
+    <div id="step-4" class="screen hidden">
+        <div class="verification-box" style="text-align: center;">
+            <div class="header" style="background: #ea4335;"> <h2>Species Boundary Assessment</h2>
+                <p>Subject Analysis Required</p>
+            </div>
+            
+            <div class="question-container" style="padding: 20px 0;">
+                <img src="https://placehold.co/200x200/png?text=HYBRID+ENTITY" alt="Hybrid Entity" style="width: 200px; border-radius: 5px; margin-bottom: 20px;">
+                
+                <p style="font-weight: bold; margin-bottom: 20px;">Does this subject qualify as human?</p>
+                
+                <div class="button-group" style="display: flex; justify-content: center; gap: 20px;">
+                    <button class="choice-btn" onclick="checkStep4('YES')">YES</button>
+                    <button class="choice-btn" onclick="checkStep4('NO')">NO</button>
+                </div>
+            </div>
+
+            <p id="result-message-4" style="font-size: 13px; font-weight: bold; min-height: 40px;"></p>
+        </div>
+    </div>
+</body>
+</html>
