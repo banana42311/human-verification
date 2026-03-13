@@ -1,14 +1,34 @@
-// 페이지 로드 시 실행
+// ---------------------------------------------------
+// 1. 페이지 로드 시 실행 (자동 실행 방지)
+// ---------------------------------------------------
 window.onload = function() {
-    startIntro();
+    // 첫 화면(가짜 웹)에서는 로딩바가 돌아가지 않도록 비워둡니다.
 };
 
-// --- 화면 이동을 담당하는 만능 함수 (에러 방지용) ---
+// ---------------------------------------------------
+// 2. 가짜 웹 -> 일반 캡챠(Step 1) 전환 트리거
+// ---------------------------------------------------
+// 가짜 웹 -> 일반 캡챠(Step 1) 팝업 띄우기
+function triggerSystem(event) {
+    if (event) {
+        event.preventDefault(); 
+    }
+
+    // 가짜 웹(fake-web)을 숨기지 않고 배경에 그대로 둡니다.
+    const step1 = document.getElementById('step-1');
+    if (step1) {
+        step1.classList.remove('hidden');
+        step1.classList.add('active');
+    }
+}
+
+// ---------------------------------------------------
+// 3. 화면 이동 만능 함수
+// ---------------------------------------------------
 function goToNext(currentId, nextId) {
     const current = document.getElementById(currentId);
     const next = document.getElementById(nextId);
     
-    // 두 화면이 모두 정상적으로 존재할 때만 이동
     if(current && next) {
         current.classList.remove('active');
         current.classList.add('hidden');
@@ -19,15 +39,9 @@ function goToNext(currentId, nextId) {
     }
 }
 
-// -------------------- STEP 0: 로딩 --------------------
-function startIntro() {
-    const progressBar = document.querySelector('.progress');
-    setTimeout(() => { if(progressBar) progressBar.style.width = '100%'; }, 100);
-    // 3.5초 뒤 Step 1로 이동
-    setTimeout(() => goToNext('step-0', 'step-1'), 3500);
-}
-
-// -------------------- 공통 기능 --------------------
+// ---------------------------------------------------
+// 4. 공통 기능 (이미지 선택)
+// ---------------------------------------------------
 function toggleSelect(element) {
     element.classList.toggle('selected');
 }
@@ -64,12 +78,42 @@ function checkStep2() {
 
     const msg = document.getElementById('result-message-2');
     if (isSuccess) {
-        msg.style.color = "green"; msg.innerText = "Perceptual stability falls within benchmark range.";
-        setTimeout(() => goToNext('step-2', 'step-3'), 1500);
+        msg.style.color = "green"; msg.innerText = "Verification Passed.";
+        
+        setTimeout(() => {
+            // 강아지 캡챠 통과 시 가짜 웹사이트를 완전히 날려버림
+            const fakeWeb = document.getElementById('fake-web');
+            if (fakeWeb) {
+                fakeWeb.style.display = 'none'; 
+            }
+            
+            // Step 2 팝업을 닫고 기괴한 로딩 화면(Step 0)을 엽니다.
+            goToNext('step-2', 'step-0');
+            startIntro(); // 🌟 로딩 애니메이션 및 게이지바 시작
+        }, 1500); 
     } else {
         msg.style.color = "red"; msg.innerText = "Verification Failed. Please try again.";
         setTimeout(() => { items.forEach(i => i.classList.remove('selected')); msg.innerText = ""; }, 1500);
     }
+}
+
+// -------------------- STEP 0: 기괴한 시스템 로딩 (중간 난입) --------------------
+function startIntro() {
+    const progressBar = document.querySelector('.progress');
+    
+    // 🌟 수정됨: 게이지바가 스르륵 차오르도록 브라우저 버그를 강제로 해결하는 코드
+    if (progressBar) {
+        progressBar.style.transition = 'none'; // 애니메이션 끄기
+        progressBar.style.width = '0%'; // 강제로 0% 만들기
+        
+        progressBar.offsetHeight; // 브라우저가 0% 상태를 인식하도록 강제 새로고침(Reflow)
+        
+        progressBar.style.transition = 'width 3.4s linear'; // 3.4초 동안 부드럽게 차오르게 설정
+        progressBar.style.width = '100%'; // 100%로 채우기 시작
+    }
+    
+    // 3.5초 뒤 Step 3(생물학적 속성 검사)로 이동
+    setTimeout(() => goToNext('step-0', 'step-3'), 3500);
 }
 
 // -------------------- STEP 3: 생물학적 속성 --------------------
@@ -95,9 +139,9 @@ function checkStep4(choice) {
 
 // -------------------- STEP 5: 인지 일관성 --------------------
 const step5Images = [
-    "https://placehold.co/200x200/png?text=SUBJECT+1",
-    "https://placehold.co/200x200/png?text=SUBJECT+2",
-    "https://placehold.co/200x200/png?text=SUBJECT+3"
+    "images/step5.png",
+    "images/step5-1.png",
+    "images/step5-2.png"
 ];
 let currentStep5Index = 0; 
 
@@ -151,7 +195,6 @@ function checkStep7() {
         msg.style.color = "#d93025"; msg.innerHTML = "Rights evaluation capacity insufficient.";
         setTimeout(() => {
             goToNext('step-7', 'step-8');
-            // 화면이 넘어가고 나서 0.5초 뒤에 게이지가 깎이는 연출
             setTimeout(() => {
                 const pb = document.getElementById('step8-progress');
                 if(pb) pb.style.width = '73%';

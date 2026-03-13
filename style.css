@@ -1,335 +1,231 @@
-/* 기본 설정 */
+/* ========================================================
+   1. 전체 기본 설정 (배경 이미지 추가)
+   ======================================================== */
+:root {
+    --cyan: #00AEEF; /* HUD 메인 청록색 */
+    --cyan-dim: rgba(0, 174, 239, 0.3);
+}
 
-/* --- 1. 전체 페이지 배경 및 기본 설정 --- */
 body {
-    /* 기존에 있던 font-family 설정은 유지합니다 */
-    font-family: 'Press Start 2P', cursive !important;
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     
-    /* 화면 중앙 정렬을 위한 기존 설정 유지 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-
-    /* ★ 전체 배경 이미지 설정 ★ */
-    /* images 폴더 안의 background.png를 불러옵니다. */
+    /* 🌟 요청하신 배경 이미지 세팅 */
     background-image: url('images/background.png') !important;
     background-repeat: repeat !important;
     background-position: top left !important;
     background-attachment: fixed !important;
     background-size: 300px auto !important;
-
-    /* ★ 2. 배경을 어둡게 하는 핵심 코드 ★ */
-    /* 배경 이미지 위에 겹쳐질 반투명한 검은색 레이어입니다.
-       마지막 숫자(0.5)는 투명도(alpha)이며, 0(완전 투명)에서 1(완전 불투명) 사이의 값을 가집니다. */
-    background-color: rgba(0, 0, 0, 0.3) !important; /* 50% 불투명한 검은색 */
     
-    /* 이미지와 색상을 혼합하는 방식입니다.
-       'multiply'를 사용하면 어두운 색상은 더 어둡게, 밝은 색상은 유지하면서 전체적으로 어둡게 만듭니다. */
+    /* 배경 이미지를 어둡게 눌러주는 효과 */
+    background-color: rgba(0, 0, 0, 0.75) !important; 
     background-blend-mode: multiply !important;
-}
     
-    /* 혹시 배경 이미지가 너무 밝아 글씨가 안 보인다면, 
-       반투명한 검은색 레이어를 살짝 깔아 가독성을 높입니다 (옵션) */
-    /* background-color: rgba(0,0,0,0.4); */
-    /* background-blend-mode: multiply; */
-
-
-/* --- 2. 마우스 커서 설정 (전체 적용) --- */
-/* 모든 요소(*) 위에 마우스가 올라갔을 때 커스텀 커서를 보여줍니다. */
-* {
-    /* images 폴더 안의 mouse.png를 불러옵니다.
-       auto는 이미지를 못 불러왔을 때의 예비용(fallback)입니다. */
-    cursor: url('images/mouse.png'), auto !important;
-}
-
-/* 버튼이나 클릭 가능한 이미지 그리드 위에서도 
-   기본 손가락(pointer) 대신 커스텀 커서가 유지되도록 강제합니다. */
-button, 
-.grid-item, 
-.choice-btn, 
-.verify-btn {
-    cursor: url('images/mouse.png'), pointer !important;
-}
-
-/* 웹사이트 전체에 픽셀 폰트 적용 */
-body, button, p, h1, h2 {
-    font-family: 'Press Start 2P', cursive;
-    /* 픽셀 폰트는 일반 글자보다 크게 느껴지므로 크기를 살짝 줄이는 게 예쁩니다 */
-    font-size: 12px; 
-    line-height: 1.5;
-    letter-spacing: -0.5px; /* 글자 사이 간격 조절 */
-}
-
-/* 파란색 헤더의 텍스트 크기만 따로 조절 (디자인 맞춤) */
-.blue-header p {
-    /* 폰트 이름을 정확히 쓰고 !important를 붙여 우선순위 1등으로 만듭니다 */
-    font-family: 'Press Start 2P', cursive !important; 
-    font-size: 10px !important;
-    color: white !important;
-    line-height: 1.8;
-    margin: 0;
-    /* 픽셀 폰트 특유의 뭉침을 방지하기 위해 자간을 살짝 넓힙니다 */
-    letter-spacing: 0.5px;
-}
-
-
-body {
-    margin: 0;
-    background-color: #f0f0f0; /* 차가운 회색 배경 */
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    color: #fff;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; overflow: hidden;
+    cursor: default;
 }
 
 /* 화면 전환용 클래스 */
 .screen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.5s;
+    position: absolute; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; transition: opacity 0.5s; pointer-events: none;
+}
+.screen.active { opacity: 1; pointer-events: auto; }
+.screen.hidden { display: none !important; }
+
+/* ========================================================
+   2. 가짜 웹사이트 & Step 1, 2 (평범한 웹 완벽 격리)
+   ======================================================== */
+#fake-web {
+    position: absolute; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    display: block; overflow-y: auto; z-index: 9999;
+}
+#fake-web *, #step-1 *, #step-2 * {
+    font-family: 'Arial', sans-serif !important;
+    color: #202122 !important;
+    letter-spacing: normal !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+    cursor: default !important;
+}
+#fake-web a, #fake-web button, #fake-web .wiki-logo, #step-1 button, #step-2 button, #step-1 .grid-item, #step-2 .grid-item {
+    cursor: pointer !important;
+}
+#fake-web input { cursor: text !important; }
+
+/* 위키피디아 세부 디자인 */
+.wiki-nav { display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 10px 20px !important; border-bottom: 1px solid #a2a9b1 !important; background: #ffffff !important; }
+.wiki-logo { height: 200px !important; cursor: pointer; }
+.search-box input { border: 3px solid #a2a9b1 !important; padding: 15px 20px !important; width: 250px !important; font-size: 13px !important; }
+.search-box button { border: 3px solid #a2a9b1 !important; background: #f8f9fa !important; padding: 15px 20px !important; cursor: pointer !important; border-left: none !important; }
+.wiki-main { display: flex !important; max-width: 1200px !important; margin: 0 auto !important; padding: 20px 15px !important; background: #ffffff !important; }
+.wiki-sidebar { width: 160px !important; flex-shrink: 0 !important; padding-right: 20px !important; }
+.wiki-sidebar ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+.wiki-sidebar li { padding: 4px 0 !important; font-size: 13px !important; }
+.wiki-sidebar .separator { border-bottom: 1px solid #eaecf0 !important; margin: 10px 0 !important; }
+.wiki-content { flex: 1 !important; padding-left: 30px !important; border-left: 1px solid #eaecf0 !important; }
+.wiki-content h1 { font-family: 'Times New Roman', serif !important; border-bottom: 1px solid #a2a9b1 !important; padding-bottom: 5px !important; font-size: 32px !important; margin-top: 0 !important; margin-bottom: 10px !important; }
+.wiki-content h2 { font-family: 'Times New Roman', serif !important; border-bottom: 1px solid #a2a9b1 !important; font-size: 24px !important; margin-top: 30px !important; margin-bottom: 10px !important; padding-bottom: 5px !important; }
+.wiki-content h3 { font-size: 18px !important; margin-top: 20px !important; margin-bottom: 10px !important; }
+.wiki-content p { margin-bottom: 14px !important; font-size: 14px !important; }
+.info-box-fake { float: right !important; width: 280px !important; border: 1px solid #a2a9b1 !important; background-color: #f8f9fa !important; padding: 10px !important; margin: 0 0 15px 20px !important; font-size: 12px !important; }
+.info-title { text-align: center !important; font-weight: bold !important; font-size: 14px !important; margin-bottom: 10px !important; background: #eaecf0 !important; padding: 5px !important; }
+.info-box-fake img { width: 100% !important; height: auto !important; border: 1px solid #ccc !important; margin-bottom: 10px !important; }
+.info-table { width: 100% !important; border-collapse: collapse !important; }
+.info-table td { padding: 3px 5px !important; }
+.info-table td:first-child { font-weight: bold !important; width: 40% !important; }
+.classification-list { margin-bottom: 20px !important; padding-left: 20px !important; }
+.classification-list li { margin-bottom: 10px !important; font-size: 14px !important; }
+
+/* 🌟 캡챠 팝업창 세부 디자인 (여백 및 컬러 수정 완료) */
+#step-1, #step-2 { position: fixed !important; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.6) !important; z-index: 10000 !important; display: none; justify-content: center; align-items: center; }
+#step-1.active, #step-2.active { display: flex !important; }
+
+#step-1 .verification-box, #step-2 .verification-box { 
+    background-color: #ffffff !important; border: 1px solid #ccc !important; 
+    border-radius: 4px !important; box-shadow: 0 5px 20px rgba(0,0,0,0.3) !important; 
+    width: 350px !important; 
+    padding: 0 !important; /* 내부 여백 완전 초기화 */
+    overflow: hidden !important; /* 모서리 둥글게 유지 */
 }
 
-.hidden {
-    display: none;
-    opacity: 0;
+/* 상단 파란색 헤더 가로 꽉 차게 */
+#step-1 .header, #step-2 .header { 
+    background-color: #1a73e8 !important; text-align: left !important; 
+    padding: 20px !important; margin: 0 !important; /* 음수 마진 제거 */
 }
 
-.active {
-    display: flex;
-    opacity: 1;
+/* 🌟 CATS, DOGS 텍스트 완벽한 화이트 지정 */
+#step-1 .header h2, #step-2 .header h2,
+#step-1 .header p, #step-2 .header p,
+#step-1 .header strong, #step-2 .header strong { 
+    color: #ffffff !important; 
+    margin: 0 0 8px 0 !important; 
 }
+#step-1 .header h2, #step-2 .header h2 { font-size: 22px !important; font-weight: bold !important; }
 
-/* STEP 0: 인트로 스타일 */
-.intro-box {
-    text-align: center;
-    background: white;
-    padding: 40px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
+/* 캡챠 내용물 여백 따로 지정 */
+#step-1 .image-grid, #step-2 .image-grid { padding: 15px 15px 0 15px !important; }
+#step-1 .footer, #step-2 .footer { padding: 15px !important; margin-top: 0 !important;}
+#step-1 #result-message, #step-2 #result-message-2 { color: #333 !important; margin-bottom: 15px !important; }
+#step-1 .verify-btn, #step-2 .verify-btn { background-color: #1a73e8 !important; color: white !important; border-radius: 3px !important; border: none !important; padding: 10px 24px !important; font-weight: bold !important; font-size: 14px !important; }
+#step-1 .verify-btn:hover, #step-2 .verify-btn:hover { background-color: #1557b0 !important; }
 
-.loading-bar {
-    width: 100%;
-    height: 4px;
-    background: #ddd;
-    margin-top: 20px;
-}
 
-.progress {
-    height: 100%;
-    background: #4285f4; /* 시스템 블루 */
-    width: 0%;
-    transition: width 3s linear; /* 3초 동안 채워짐 */
-}
-
-/* STEP 1: 검증 박스 스타일 */
-.verification-box {
-    background: white;
-    padding: 15px;
-    width: 350px; /* 캡차 창 크기 */
-    border: 1px solid #d3d3d3;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.header {
-    background: #4285f4;
-    color: white;
-    padding: 20px;
-    margin: -15px -15px 15px -15px; /* 박스 꽉 채우기 */
-}
-
-.header h2 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: normal;
-}
-
-.header strong {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-/* 3x3 이미지 그리드 */
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-}
-
-.grid-item {
-    width: 100%;
-    height: 100px; /* 정사각형 느낌 */
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.grid-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.2s;
-}
-
-/* 선택되었을 때 효과 */
-.grid-item.selected img {
-    transform: scale(0.8); /* 이미지가 작아짐 */
-}
-
+/* ========================================================
+   3. 이미지 그리드 레이아웃 (공통)
+   ======================================================== */
+.image-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.grid-item { width: 100%; height: 100px; position: relative; cursor: pointer; overflow: hidden; border: 2px solid transparent; flex: 1;}
+.grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; }
+.grid-item.selected img { transform: scale(0.8); }
 .grid-item.selected::after {
-    content: '✔'; /* 체크 표시 */
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: white;
-    background: #4285f4;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
+    content: '✔'; position: absolute; top: 5px; left: 5px; color: white;
+    background: #4285f4; border-radius: 50%; width: 20px; height: 20px;
+    display: flex; justify-content: center; align-items: center; font-size: 12px;
+}
+.footer { display: flex; justify-content: flex-end; }
+.image-container { display: flex; flex-direction: column; gap: 5px; }
+.img-row { display: flex; flex-direction: row; gap: 5px; height: 110px; }
+.grid-item.selected { border-color: var(--cyan); }
+.row-tall { height: 160px !important; }
+.flex-grow { flex: 1.5 !important; }
+.stacked-col { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.stacked-col .grid-item { flex: 1; width: 100%; }
+
+/* ========================================================
+   4. Step 0 ~ Step 9 시스템 테마 통일 (HUD + 픽셀 폰트)
+   ======================================================== */
+
+/* 기괴한 픽셀 폰트 전면 적용 */
+#step-0 *, #step-3 *, #step-4 *, #step-5 *, #step-6 *, #step-7 *, #step-8 *, #step-9 * {
+    font-family: 'Press Start 2P', cursive !important;
 }
 
-/* 버튼 스타일 */
-.footer {
-    margin-top: 15px;
-    display: flex;
-    justify-content: flex-end;
+/* 마우스 커서 기괴하게 변경 */
+#step-0 *, #step-3 *, #step-4 *, #step-5 *, #step-6 *, #step-7 *, #step-8 *, #step-9 * {
+    cursor: url('images/mouse.png'), auto !important;
 }
 
-.verify-btn {
-    background: #4285f4;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
+/* 박스 크기(비율) 복구 및 통일 */
+#step-0 .system-access-box,
+#step-3 .verification-box,
+#step-4 .verification-box,
+#step-5 .verification-box,
+#step-6 .verification-box,
+#step-7 .verification-box,
+#step-8 .verification-box,
+#step-9 .intro-box {
+    background: rgba(10, 10, 10, 0.9) !important;
+    border: 1px solid var(--cyan) !important;
+    border-radius: 4px; padding: 30px;
+    box-shadow: 0 0 20px var(--cyan-dim) !important;
+    width: 380px !important; 
+    max-width: 90vw;
 }
 
-.verify-btn:hover {
-    background: #3367d6;
+/* Step 3 레이아웃 예외 처리 */
+#step-3 .step3-layout { width: 480px !important; }
+
+/* 시스템 헤더 디자인 통일 */
+#step-3 .header, #step-4 .header, #step-5 .header,
+#step-6 .header, #step-7 .header, #step-8 .header {
+    background: transparent !important; border-bottom: 1px solid var(--cyan) !important;
+    padding: 0 0 15px 0 !important; margin: 0 0 20px 0 !important; text-align: center !important;
 }
 
-#result-message {
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 14px;
+/* 픽셀 폰트에 맞춰 글자 크기 조정 */
+#step-3 .header p, #step-4 .header h2, #step-5 .header h2,
+#step-6 .header h2, #step-7 .header h2, #step-8 .header h2 {
+    color: var(--cyan) !important; font-size: 14px !important; line-height: 1.6 !important; margin: 5px 0 !important;
 }
-/* YES / NO 버튼 스타일 */
-.choice-btn {
-    background: white;
-    border: 2px solid #ccc;
-    padding: 10px 30px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
+#step-4 .header p, #step-5 .header p, #step-6 .header p, #step-7 .header p {
+    color: #aaa !important; font-size: 10px !important; margin-top: 10px !important;
+}
+#step-3 p, #step-4 p, #step-5 p, #step-6 p, #step-7 p, #step-8 p, #step-9 p, #step-9 h3 {
+    color: #fff !important; font-size: 11px !important; line-height: 1.8 !important;
 }
 
-.choice-btn:hover {
-    background: #f0f0f0;
-    border-color: #999;
+/* 버튼 디자인 통일 */
+#step-3 .verify-btn, #step-4 .choice-btn, #step-5 .choice-btn,
+#step-6 .verify-btn, #step-7 .verify-btn, #step-8 .choice-btn, #step-9 button {
+    background: transparent !important; border: 1px solid var(--cyan) !important; color: var(--cyan) !important;
+    padding: 10px 20px !important; font-size: 12px !important; text-transform: uppercase; transition: 0.2s;
+}
+#step-3 .verify-btn:hover, #step-4 .choice-btn:hover, #step-5 .choice-btn:hover,
+#step-6 .verify-btn:hover, #step-7 .verify-btn:hover, #step-8 .choice-btn:hover, #step-9 button:hover {
+    background: var(--cyan) !important; color: #000 !important;
 }
 
-.choice-btn:active {
-    background: #ddd;
+/* 에러 메시지 폰트 크기 및 색상 */
+#result-message-3, #result-message-4, #result-message-5,
+#result-message-6, #result-message-7, #result-message-8, #step-9 h1 {
+    color: #ff3333 !important; font-size: 12px !important; text-shadow: 0 0 5px rgba(255, 51, 51, 0.5);
 }
 
-/* Step 3 레이아웃 설정 */
-.step3-layout {
-    width: 480px;
-    background: white;
-    padding: 10px;
-    border: 1px solid #ccc;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+/* --------------------------------------------------------
+   🌟 Step 0: 전환 화면(로딩) 전용 게이지바 디자인
+   -------------------------------------------------------- */
+.system-access-box { text-align: center; }
+.system-access-box h1 { font-size: 20px !important; color: var(--cyan); margin-bottom: 20px; animation: blink 1s infinite; }
+.hud-box { text-align: left; margin-bottom: 20px; }
+.hud-box .desc-line { font-size: 9px !important; color: #aaa; margin: 8px 0; }
+.redirect-text { font-size: 10px !important; color: #fff; margin-top: 20px; line-height: 1.5; }
+
+/* 🌟 스크립트와 연동되는 파란색 로딩바 CSS */
+.hud-loading-bar { 
+    width: 100%; height: 6px; background: #333; 
+    position: relative; margin-bottom: 10px; border-radius: 3px; overflow: hidden;
+}
+.hud-loading-bar .progress { 
+    height: 100%; background: var(--cyan); 
+    width: 0%; transition: width 3.4s linear; /* 스크립트의 시간에 맞춰 스르륵 차오름 */
 }
 
-.blue-header {
-    background: #34aadc;
-    padding: 15px;
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-.blue-header p {
-    color: white;
-    margin: 0;
-    font-size: 14px;
-    font-family: sans-serif;
-}
-
-/* 이미지 컨테이너 (세로로 줄을 쌓음) */
-.image-container {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-/* 각 줄 (이미지를 가로로 나열) */
-.img-row {
-    display: flex;
-    flex-direction: row; /* ★ 핵심: 가로 정렬 */
-    gap: 5px;
-    height: 110px;
-}
-
-.grid-item {
-    flex: 1; /* 가로 공간을 공평하게 분배 */
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.grid-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.grid-item.selected {
-    border-color: #34aadc;
-}
-
-.error-text {
-    font-size: 12px;
-    color: #d93025;
-    text-align: center;
-    margin-top: 8px;
-    min-height: 30px;
-}
-
-/* 2행의 전체 높이를 확보 (두 개가 쌓여야 하니까요!) */
-.row-tall {
-    height: 160px !important; /* 이미지 비율에 따라 150~200 사이로 조절해보세요 */
-}
-
-/* 2-2 이미지를 가로로 더 넓게 만듭니다 */
-.flex-grow {
-    flex: 1.5 !important; 
-}
-
-/* 2-3-1과 2-3-2를 세로(Column) 방향으로 정렬 */
-.stacked-col {
-    display: flex;
-    flex-direction: column; 
-    gap: 5px;
-    flex: 1; /* 다른 칸들과 너비를 맞춤 */
-}
-
-.stacked-col .grid-item {
-    flex: 1; /* 박스 안에서 높이를 50%씩 나눠 가짐 */
-    width: 100%;
-}
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }

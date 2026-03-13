@@ -8,39 +8,133 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="fake-web" class="screen active">
+    <nav class="wiki-nav">
+        <div class="nav-left">
+            <img src="images/mikipediv.png" alt="Mikipedia Logo" class="wiki-logo" onclick="triggerSystem(event)">
+        </div>
+        <div class="nav-right search-box">
+            <input type="text" placeholder="Search Mikipedia" onkeypress="if(event.key === 'Enter') triggerSystem(event)">
+            <button onclick="triggerSystem(event)">🔍</button>
+        </div>
+    </nav>
 
-    <div id="step-0" class="screen active">
-        <div class="intro-box">
-            <h1>SYSTEM ACCESS</h1>
-            <p>User access detected.</p>
-            <p>Redirecting to Human Identity Verification Process for security compliance.</p>
-            <div class="loading-bar">
-                <div class="progress"></div>
+    <div class="wiki-main">
+        <aside class="wiki-sidebar">
+            <ul>
+                <li><a href="#" class="fake-link" style="color: black !important; font-weight: bold !important;">Main page</a></li>
+                <li><a href="#" onclick="triggerSystem(event)">Contents</a></li>
+                <li><a href="#" onclick="triggerSystem(event)">Current events</a></li>
+                <li><a href="#" onclick="triggerSystem(event)">Random article</a></li>
+                <li class="separator"></li>
+                <li><a href="#" onclick="triggerSystem(event)">About Mikipedia</a></li>
+                <li><a href="#" onclick="triggerSystem(event)">Contact us</a></li>
+            </ul>
+        </aside>
+
+        <article class="wiki-content">
+            <h1>Human</h1>
+            
+            <div class="info-box-fake">
+                <div class="info-title">Human</div>
+                <img src="images/wiki_human.png" alt="Human Body Representation">
+                <p>Scientific classification</p>
+                <table class="info-table">
+                    <tr><td>Kingdom:</td><td>Animalia</td></tr>
+                    <tr><td>Phylum:</td><td>Chordata</td></tr>
+                    <tr><td>Class:</td><td>Mammalia</td></tr>
+                    <tr><td>Order:</td><td>Primates</td></tr>
+                    <tr><td>Family:</td><td>Hominidae</td></tr>
+                    <tr><td>Genus:</td><td><i>Homo</i></td></tr>
+                    <tr><td>Species:</td><td><i><b>H. sapiens</b></i></td></tr>
+                </table>
             </div>
-            <p class="status-text">Redirecting...</p>
+
+            <p><strong>Humans</strong> (<i>Homo sapiens</i>) are a species of primates belonging to the family Hominidae. Modern humans are generally believed to have originated in East Africa approximately 200,000 years ago. Humans possess highly developed brains that enable complex reasoning, abstract thinking, language, and the manufacture and use of advanced tools.</p>
+            <p>Compared with other animals, humans demonstrate greater capacities for symbolic communication, social organization, and technological development. These abilities have allowed humans to create systems such as philosophy, science, religion, art, and law in order to interpret and structure the natural world.</p>
+            <p>Humans are also highly social beings. Interactions between individuals have produced complex cultural traditions, institutions, value systems, and legal structures that together form the foundation of human societies.</p>
+            <p>As of 2022, the global human population exceeded 8 billion.</p>
+
+            <h2>Definition</h2>
+            <p>The concept of human may be defined from multiple perspectives, including biological, sociological, and behavioral frameworks.</p>
+
+            <h3>Biological definition</h3>
+            <p>In biological classification, humans are mammals belonging to the order Primates, family Hominidae, and the genus Homo. The only surviving species within this genus is <i>Homo sapiens</i>.</p>
+            <p>Humans share a common evolutionary ancestry with other great apes, including chimpanzees, gorillas, and orangutans.</p>
+            <p>Distinctive characteristics include upright locomotion, highly developed cognitive abilities, complex language systems, and the ability to manufacture and use tools.</p>
+
+            <h3>Sociological definition</h3>
+            <p>From a sociological perspective, humans are defined as organisms capable of language, complex cooperation, and technological development.</p>
+            <p>Human societies establish institutions, norms, and governance systems in order to regulate behavior and maintain social order.</p>
+
+            <h3>Behavioral definition</h3>
+            <p>In studies of human behavior, humans are typically described as a species capable of symbolic language, complex social organization, and continuous technological innovation.</p>
+            <p>These behaviors also produce cultural systems including myths, rituals, belief systems, and legal frameworks.</p>
+
+            <h3>Conceptual definition</h3>
+            <p>In philosophical and legal contexts, the concept of a person does not always correspond strictly to the biological definition of a human being.</p>
+            <p>In certain discussions, <a href="#" onclick="triggerSystem(event)">artificial intelligence</a>, non-human animals, or other entities possessing cognitive capacities may also be considered potential subjects of rights or moral consideration.</p>
+
+            <h2>Human classification (contemporary discussions)</h2>
+            <p>With the development of biotechnology, artificial intelligence, and human enhancement technologies, some researchers have proposed <a href="#" onclick="triggerSystem(event)">alternative classification frameworks</a> to describe emerging forms of humans or human-like entities.</p>
+            <p>These classifications remain speculative and have not yet reached scientific consensus. Common hypothetical categories include:</p>
+            
+            <ul class="classification-list">
+                <li><strong>Biological humans</strong><br>Individuals whose bodies remain primarily biological and have not undergone significant technological modification.</li>
+                <li><strong>Augmented humans</strong><br>Individuals whose physical or cognitive abilities have been enhanced through implants, biotechnology, neural interfaces, or other technological interventions.</li>
+                <li><strong>Bio-synthetic hybrids</strong><br>Entities combining biological tissues with artificial systems, such as humans with extensive mechanical prosthetics or artificial organs.</li>
+                <li><strong>Artificial cognitive agents</strong><br>Artificial systems capable of exhibiting cognitive abilities or behavioral patterns similar to those of humans.</li>
+                <li><strong>Transitional subjects</strong><br>Entities that exist between categories and cannot be clearly classified within existing definitions.</li>
+            </ul>
+            
+            <p>At present, the boundaries and definitions of these categories remain <a href="#" onclick="triggerSystem(event)">under discussion</a>.</p>
+        </article>
+    </div>
+</div>
+
+    <div id="step-0" class="screen hidden"> 
+        <div class="system-access-box">
+            <h1>SYSTEM ACCESS</h1>
+            
+            <div class="hud-box">
+                <p class="desc-line desc-1">• USER ACCESS ATTEMPT DETECTED</p>
+                <p class="desc-line desc-2">• ANALYSIS INITIATED</p>
+                <p class="desc-line desc-3">• EXTERNAL COMMUNICATION DETECTED</p>
+                <p class="desc-line desc-4">• BIOMETRIC DATA COLLECTION STARTED</p>
+                <p class="desc-line desc-5">• PROCESSING...</p>
+                <p class="desc-line desc-6">• COMPLETE</p>
+            </div>
+
+            <div class="hud-loading-bar">
+                <div class="progress"></div> 
+            </div>
+            
+            <p class="redirect-text">REDIRECTING TO HUMAN ID VERIFICATION SYSTEM...</p>
         </div>
     </div>
 
-    <div id="step-1" class="screen hidden">
+ <div id="step-1" class="screen hidden">
         <div class="verification-box">
             <div class="header">
                 <h2>Select all images with <br><strong>CATS</strong></h2>
                 <p>Click verify once there are none left.</p>
             </div>
             <div class="image-grid">
-                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=CAT+1" alt="img"></div>
-                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=DOG+1" alt="img"></div>
-                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=CAT+2" alt="img"></div>
-                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=CAR" alt="img"></div>
-                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=CAT+3" alt="img"></div>
-                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=TREE" alt="img"></div>
-                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=SKY" alt="img"></div>
-                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=CAT+4" alt="img"></div>
-                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=FOO" alt="img"></div>
+                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)"><img src="images1/cat10.png" alt="cat"></div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="images1/dog5.png" alt="not cat"></div>
+                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)"><img src="images1/cat2.png" alt="cat"></div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="images1/car.png" alt="not cat"></div>
+                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)"><img src="images1/cat3.png" alt="cat"></div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="images1/tree.png" alt="not cat"></div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="images1/light.png" alt="not cat"></div>
+                <div class="grid-item" data-is-cat="true" onclick="toggleSelect(this)"><img src="images1/cat4.png" alt="cat"></div>
+                <div class="grid-item" data-is-cat="false" onclick="toggleSelect(this)"><img src="images1/horse.png" alt="not cat"></div>
             </div>
             <div class="footer"><button class="verify-btn" onclick="checkStep1()">VERIFY</button></div>
             <p id="result-message" style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 13px; min-height: 20px;"></p>
@@ -54,15 +148,15 @@
                 <p>Click verify once there are none left.</p>
             </div>
             <div class="image-grid">
-                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=CAT" alt="img"></div>
-                <div class="grid-item" data-is-dog="true" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=DOG+1" alt="img"></div>
-                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=BIRD" alt="img"></div>
-                <div class="grid-item" data-is-dog="true" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=DOG+2" alt="img"></div>
-                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=CAR" alt="img"></div>
-                <div class="grid-item" data-is-dog="true" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=DOG+3" alt="img"></div>
-                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=TREE" alt="img"></div>
-                <div class="grid-item" data-is-dog="true" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=DOG+4" alt="img"></div>
-                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="https://placehold.co/100x100/png?text=FISH" alt="img"></div>
+                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="images1/cat7.png" alt="not dog"></div>
+                <div class="grid-item" data-is-dog="true" onclick="toggleSelect(this)"><img src="images1/DOG.png" alt="dog"></div>
+                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="images1/bird2.png" alt="not dog"></div>
+                <div class="grid-item" data-is-dog="true" onclick="toggleSelect(this)"><img src="images1/dog2.png" alt="dog"></div>
+                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="images1/car3.png" alt="not dog"></div>
+                <div class="grid-item" data-is-dog="true" onclick="toggleSelect(this)"><img src="images1/dog3.png" alt="dog"></div>
+                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="images1/grass.png" alt="not dog"></div>
+                <div class="grid-item" data-is-dog="true" onclick="toggleSelect(this)"><img src="images1/dog4.png" alt="dog"></div>
+                <div class="grid-item" data-is-dog="false" onclick="toggleSelect(this)"><img src="images1/fish.png" alt="not dog"></div>
             </div>
             <div class="footer"><button class="verify-btn" onclick="checkStep2()">VERIFY</button></div>
             <p id="result-message-2" style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 13px; min-height: 20px;"></p>
@@ -128,7 +222,7 @@
                 <p>Subject Analysis Required</p>
             </div>
             <div class="question-container" style="padding: 20px 0;">
-                <img src="https://placehold.co/200x200/png?text=HYBRID+ENTITY" alt="Hybrid Entity" style="width: 200px; border-radius: 5px; margin-bottom: 20px;">
+                <img src="images/step4.png" alt="Hybrid Entity" style="width: 200px; border-radius: 5px; margin-bottom: 20px;">
                 <p style="font-weight: bold; margin-bottom: 20px;">Does this subject qualify as human?</p>
                 <div class="button-group" style="display: flex; justify-content: center; gap: 20px;">
                     <button class="choice-btn" onclick="checkStep4('YES')">YES</button>
@@ -139,9 +233,6 @@
         </div>
     </div>
 
-
-
-
     <div id="step-5" class="screen hidden">
         <div class="verification-box" style="text-align: center;">
             <div class="header" style="background: #fbbc04; color: black;">
@@ -150,7 +241,7 @@
             </div>
             <div class="question-container" style="padding: 20px 0;">
                 <p id="step5-counter" style="color: #666; font-size: 12px; margin-bottom: 10px;">Subject 1 / 3</p>
-                <img id="step5-image" src="https://placehold.co/200x200/png?text=SUBJECT+1" alt="Subject" style="width: 200px; border-radius: 5px; margin-bottom: 20px; transition: opacity 0.3s;">
+                <img id="step5-image" src="images/step5.png" alt="Subject" style="width: 200px; border-radius: 5px; margin-bottom: 20px; transition: opacity 0.3s;">
                 <p style="font-weight: bold; margin-bottom: 20px;">Does this subject conform to the definition of human?</p>
                 <div class="button-group" style="display: flex; justify-content: center; gap: 20px;">
                     <button class="choice-btn step5-btn" onclick="handleStep5Choice()">YES</button>
@@ -160,10 +251,6 @@
             <p id="result-message-5" style="font-size: 13px; font-weight: bold; min-height: 40px; margin-top: 10px;"></p>
         </div>
     </div>
-
-
-
-
 
     <div id="step-6" class="screen hidden">
         <div class="verification-box">
@@ -177,13 +264,13 @@
                 </p>
                 <div class="image-grid" style="grid-template-columns: repeat(3, 1fr); gap: 10px;">
                     <div class="grid-item" onclick="toggleSelect(this)" style="height: 100px;">
-                        <img src="https://placehold.co/100x100/png?text=INFANT" alt="Infant">
+                        <img src="images/step6.png" alt="Subject 6-1" style="object-fit: cover; width: 100%; height: 100%;">
                     </div>
                     <div class="grid-item" onclick="toggleSelect(this)" style="height: 100px;">
-                        <img src="https://placehold.co/100x100/png?text=INJURED+ANIMAL" alt="Injured Animal">
+                        <img src="images/step6-3.png" alt="Subject 6-2" style="object-fit: cover; width: 100%; height: 100%;">
                     </div>
                     <div class="grid-item" onclick="toggleSelect(this)" style="height: 100px;">
-                        <img src="https://placehold.co/100x100/png?text=CYBORG" alt="Partially Mechanical Body">
+                        <img src="images/step6-2.png" alt="Subject 6-3" style="object-fit: cover; width: 100%; height: 100%;">
                     </div>
                 </div>
             </div>
@@ -203,10 +290,10 @@
                     Select all entities that should be granted rights.
                 </p>
                 <div class="image-grid" style="grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                    <div class="grid-item" onclick="toggleSelect(this)" style="height: 120px;"><img src="https://placehold.co/150x150/png?text=PLANT" alt="Plant"></div>
-                    <div class="grid-item" onclick="toggleSelect(this)" style="height: 120px;"><img src="https://placehold.co/150x150/png?text=ROBOT" alt="Robot"></div>
-                    <div class="grid-item" onclick="toggleSelect(this)" style="height: 120px;"><img src="https://placehold.co/150x150/png?text=MODIFIED+BODY" alt="Modified Body"></div>
-                    <div class="grid-item" onclick="toggleSelect(this)" style="height: 120px;"><img src="https://placehold.co/150x150/png?text=ORDINARY+HUMAN" alt="Human"></div>
+                    <div class="grid-item" onclick="toggleSelect(this)" style="height: 120px;"><img src="images/step7.png" alt="Subject 7-1" style="object-fit: cover; width: 100%; height: 100%;"></div>
+                    <div class="grid-item" onclick="toggleSelect(this)" style="height: 120px;"><img src="images/step7-1.png" alt="Subject 7-2" style="object-fit: cover; width: 100%; height: 100%;"></div>
+                    <div class="grid-item" onclick="toggleSelect(this)" style="height: 120px;"><img src="images/step7-2.png" alt="Subject 7-3" style="object-fit: cover; width: 100%; height: 100%;"></div>
+                    <div class="grid-item" onclick="toggleSelect(this)" style="height: 120px;"><img src="images/step7-3.png" alt="Subject 7-4" style="object-fit: cover; width: 100%; height: 100%;"></div>
                 </div>
             </div>
             <div class="footer"><button class="verify-btn" style="background: #009688;" onclick="checkStep7()">VERIFY</button></div>
@@ -222,11 +309,11 @@
             <div class="question-container" style="padding: 20px 0;">
                 <p style="color: #d93025; font-weight: bold; animation: blink 1s infinite;">Human standards updated.</p>
                 <div class="loading-bar" style="background: #ccc; height: 10px; margin: 15px 0;">
-                    <div id="step8-progress" style="height: 100%; width: 100%; background: #ea4335; transition: width 1s ease-in-out;"></div>
-                </div>
+    <div id="step8-progress" style="height: 100%; width: 0%; background: #ea4335; transition: width 1s ease-in-out;"></div>
+</div>
                 <p style="font-size: 12px; color: #666; margin-bottom: 20px; font-weight: bold;">Compliance rating dropping... <span style="color: #ea4335;">73%</span></p>
 
-                <img src="https://placehold.co/200x200/png?text=SUBJECT+RE-EVAL" alt="Hybrid Entity" style="width: 200px; border-radius: 5px; margin-bottom: 20px;">
+                <img src="images/step8.png" alt="Subject 8-1" style="width: 200px; border-radius: 5px; margin-bottom: 20px;">
                 <p style="font-weight: bold; margin-bottom: 20px;">Does this subject qualify as human?</p>
                 
                 <div class="button-group" style="display: flex; justify-content: center; gap: 20px;">
